@@ -16,13 +16,24 @@ public class ProductoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Servidor existe en: ").append(request.getContextPath());
+		response.getWriter().append("METODO GET - Served at: ").append(request.getContextPath());
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	/*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	*/
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("METODO POST - Served at: ").append(request.getContextPath());
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("METODO PUT - Served at: ").append(request.getContextPath());
+	}
+	
+	protected void doPatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("METODO PATCH - Served at: ").append(request.getContextPath());
 	}
 
 }
