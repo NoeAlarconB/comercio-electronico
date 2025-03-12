@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import services.CategoriaService;
+import services.impl.CategoriaServiceImpl;
+
 @WebServlet("/productos")
-public class ProductoServlet extends HttpServlet {
+public class ProductoServlet extends HttpServlet { //SERVELET MUESTRA LAS VISTAS
 	private static final long serialVersionUID = 1L;
        
     public ProductoServlet() {
