@@ -23,6 +23,7 @@
     <mappers>
         <!-- Para usar el XML, se referencia con 'resource' -->
         <mapper resource="dao/CategoriaMapper.xml"/>
+        <mapper resource="dao/MarcaMapper.xml"/>
     </mappers>
 </configuration>
 
