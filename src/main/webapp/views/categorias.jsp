@@ -26,10 +26,14 @@
 				if (categorias != null && !categorias.isEmpty()) {
 					for(Categoria categoria: categorias) {
 			%>		
-			<div class="flex bg-gray-200 hover:scale-103 transition transform duration-300 w-[200px] justify-center flex-col p-4 gap-2 items-center rounded-md border border-gray-300 border-solid hover:border-green-600 cursor-pointer">
+			<div class="flex bg-gray-200 hover:scale-103 transition transform duration-300 w-[200px] 
+						justify-center flex-col p-4 gap-2 items-center rounded-md border border-gray-300 
+						border-solid hover:border-green-600 cursor-pointer">
 				<img class="rounded-sm" src="<%= categoria.getImagenUrl()%>" width="150px">
 				<p class="text-center font-bold text-gray-600"><%= categoria.getNombre() %></p>
 			</div>
+			
+			
 			<% 	} %>			
 			<%	} else { %>
 				<p>No se encontraron registros</p>
