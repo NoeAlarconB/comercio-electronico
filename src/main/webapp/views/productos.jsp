@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import="models.Subcategoria" %>
+<%@ page import="models.Producto" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,14 +10,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
+
 <body>
-	
-	<div class="flex gap-4 bg-[rgb(0,200,110)] text-m flex justify-center h-[40px] items-center px-4 py-2">
+
+	<div class="flex gap-4 bg-[rgb(0,180,100)] text-m flex justify-center h-[40px] items-center px-4 py-2">
             <h1 class="font-bold">BIENVENIDOS A POSEIDON Ψ</h1>
     </div>
-    
+	
 	<%
-		List<Subcategoria> subcategorias = (List<Subcategoria>) request.getAttribute("subcategorias");
+		List<Producto> productos = (List<Producto>) request.getAttribute("productos");
 	%>
 	
 	<header>
@@ -30,15 +31,15 @@
                     <p class="text-lm font-bold">Store</p>
                 </div>
             </div>
-
+	
             <ul class="flex space-x-6 text-sm uppercase font-semibold">
-            	<li><a href="/comercio-electronico" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm ">Inicio</a></li>
+            	<li><a href="/comercio-electronico" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Inicio</a></li>
 				<li><a href="/comercio-electronico/categorias" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm rounded-md cursor-pointer border border-green border-solid">Categorias</a></li>
 				<li><a href="/comercio-electronico/marcas" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Marcas</a></li>
-				<li><a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Ofertas</a></li>
+            	<li><a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Ofertas</a></li>
 				<li><a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Vender</a></li>
             </ul>
-
+            
             <div class="flex space-x-4 text-lg">
                 <div class="flex items-center space-x-1">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Flag_of_Peru_Bandera_del_Per%C3%BA_B.png?20080710185009" 
@@ -62,15 +63,17 @@
 	</header>
 	
 	<main class="p-4">
-		<div class="flex w-full justify-center p-4 gap-4 flex-wrap">
-			<% if (subcategorias != null && !subcategorias.isEmpty()) { %>
-				<% for(Subcategoria subcategoria: subcategorias) { %>
-					<a href="/comercio-electronico/productos?idSubcategoria=<%= subcategoria.getIdSubcategoria() %>" 
-					class="flex bg-gray-200 hover:scale-103 transition transform duration-300 w-[200px] 
-						   justify-center flex-col p-4 gap-2 items-center rounded-md border border-gray-300 
-						   border-solid hover:border-green-600 cursor-pointer">
-						<img class="rounded-sm" src="<%= subcategoria.getImagenUrl() %>" width="150px">
-						<span class="text-center font-bold text-gray-600"><%= subcategoria.getNombre() %></span>
+		<div class="flex w-full justify-center p-4 gap-4 flex-wrap ">
+			<% if (productos != null && !productos.isEmpty()) { %>
+				<% for(Producto producto: productos) { %>
+					<a href="/comercio-electronico/detalleProducto?idProducto=<%= producto.getIdProducto() %>"
+					   class="flex bg-gray-200 hover:scale-103 transition transform duration-300 w-[200px] 
+						      justify-center flex-col p-4 gap-2 items-center rounded-md border border-gray-300 
+						      border-solid hover:border-green-600 cursor-pointer">
+						<img class="rounded-sm" src="<%= producto.getImagenUrl() %>" width="250px">
+						<span class="text-center font-bold"><%= producto.getNombre() %></span>
+						<span class="text-center bg-[rgb(0,180,100)] font-bold text-white px-6 py-1 rounded-full text-center cursor-pointer hover:bg-green-400"> S/ <%= producto.getPrecio() %></span>
+						
 					</a>
 				<% 	} %>
 			<%	} else { %>
@@ -78,15 +81,21 @@
 			<% } %>
 		</div>
 		
-		<% if (subcategorias != null && !subcategorias.isEmpty()) { %>
-			<div class="w-full p-4">Total registros: <%= subcategorias.size() %></div>
+		<% if (productos != null && !productos.isEmpty()) { %>
 		<% } %>
 		
 	</main>
-	
-	
+
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 

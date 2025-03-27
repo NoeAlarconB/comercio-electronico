@@ -4,6 +4,5 @@ import java.util.List;
 import models.Subcategoria;
 
 public interface SubcategoriaMapper {
-
-	List<Subcategoria> listarSubcategorias(int idCategoria);
+	List<Subcategoria> listarSubcategoriasPorIdCategoria(Integer idCategoria);
 }

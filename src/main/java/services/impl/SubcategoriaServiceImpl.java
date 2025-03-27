@@ -12,11 +12,11 @@ import services.SubcategoriaService;
 public class SubcategoriaServiceImpl implements SubcategoriaService {
 
 	@Override
-	public List<Subcategoria> listarSubcategorias(int idCategoria) {
+	public List<Subcategoria> listarSubcategoriasPorIdCategoria(Integer idCategoria) {
 		try {
 			SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
 			SubcategoriaMapper subcategoriaMapper = session.getMapper(SubcategoriaMapper.class);
-			return subcategoriaMapper.listarSubcategorias(idCategoria);
+			return subcategoriaMapper.listarSubcategoriasPorIdCategoria(idCategoria);
 		} catch (Exception e) {
 			System.out.println(e);
 			return null;

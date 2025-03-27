@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.ProductoMapper">
+
+	<resultMap id="ProductoMap" type="models.Producto">
+    <id column="id_producto" property="idProducto"/>
+    <result column="id_marca" property="idMarca"/>
+    <result column="id_subcategoria" property="idSubcategoria"/>
+    <result column="nombre" property="nombre"/>
+    <result column="descripcion" property="descripcion"/>
+    <result column="modelo" property="modelo"/>
+    <result column="precio" property="precio"/>
+    <result column="stock" property="stock"/>
+    <result column="estado" property="estado"/>
+    <result column="fecha_garantia_meses" property="fechaGarantiaMeses"/>
+    <result column="fecha_creacion" property="fechaCreacion"/>
+    <result column="imagen_url" property="imagenUrl"/>
+</resultMap>
+
+	<select id="listarProductosPorIdSubcategoria" parameterType="int" resultMap="ProductoMap">
+		SELECT (
+				SELECT pi.imagen_url
+				FROM producto_imagenes pi
+				WHERE pi.estado_auditoria = '1' AND pi.id_producto = p.id_producto
+				ORDER BY pi.fecha_creacion ASC
+				LIMIT 1
+			) imagen_url, 
+			p.id_producto, p.id_marca, p.id_subcategoria, p.nombre, p.descripcion, p.modelo, 
+			p.precio, p.stock, p.estado, p.fecha_garantia_meses, p.fecha_creacion
+		FROM productos p
+		WHERE p.estado_auditoria = '1' and p.id_subcategoria = #{idSubcategoria}
+	</select>
+	
+	<select id="obtenerDetalleProductoPorIdProducto" parameterType="int" resultMap="ProductoMap">
+    SELECT p.id_producto, p.nombre, p.modelo, p.descripcion, p.precio, p.stock, p.estado_auditoria, 
+	   pi.nombre, pi.imagen_url
+	   FROM productos p
+	   LEFT JOIN producto_imagenes pi ON p.id_producto = pi.id_producto
+	   WHERE p.id_producto = #{idProducto} 
+  	   AND p.estado_auditoria = '1' LIMIT 1;
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

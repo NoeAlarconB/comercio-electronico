@@ -11,27 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Producto;
-import services.CategoriaService;
 import services.ProductoService;
-import services.impl.CategoriaServiceImpl;
 import services.impl.ProductoServiceImpl;
 
-@WebServlet("/productos")
-public class ProductoServlet extends HttpServlet { //SERVELET MUESTRA LAS VISTAS
+@WebServlet("/detalleProducto")
+public class DetalleProductoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private final ProductoService productoService;
 	
-    public ProductoServlet() {
+	private final ProductoService productoService;
+
+    public DetalleProductoServlet() {
         super();
         productoService = new ProductoServiceImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Integer idSubcategoria = Integer.parseInt(request.getParameter("idSubcategoria"));
-		List<Producto> productos = productoService.listarProductosPorIdSubcategoria(idSubcategoria);
-		request.setAttribute("productos", productos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/productos.jsp");
+		Integer idProducto = Integer.parseInt(request.getParameter("idProducto"));
+		Producto producto = productoService.obtenerDetalleProductoPorIdProducto(idProducto);
+		request.setAttribute("producto", producto);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/detallesProductos.jsp");
 		dispatcher.forward(request, response);
 	}
 }

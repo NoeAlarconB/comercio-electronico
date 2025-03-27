@@ -26,10 +26,10 @@ public class SubcategoriaServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idCategoria = Integer.parseInt(request.getParameter("idCategoria"));
-		List<Subcategoria> subcategorias = subcategoriaService.listarSubcategorias(idCategoria);
+		Integer idCategoria = Integer.parseInt(request.getParameter("idCategoria"));
+		List<Subcategoria> subcategorias = subcategoriaService.listarSubcategoriasPorIdCategoria(idCategoria);
 		request.setAttribute("subcategorias", subcategorias);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/categorias.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/subcategoria.jsp");
 		dispatcher.forward(request, response); 
 	}
 

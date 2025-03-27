@@ -11,7 +11,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="UNPOOLED">
                 <property name="driver" value="org.postgresql.Driver"/>
-                <property name="url" value="jdbc:postgresql://localhost/BD_POSEIDON_STORE"/>
+                <property name="url" value="jdbc:postgresql://localhost/BD_POSEIDON"/>
                 <property name="username" value="postgres"/>
                 <property name="password" value="Lit"/>
             </dataSource>
@@ -25,6 +25,7 @@
         <mapper resource="dao/CategoriaMapper.xml"/>
         <mapper resource="dao/MarcaMapper.xml"/>
         <mapper resource="dao/SubcategoriaMapper.xml"/>
+        <mapper resource="dao/ProductoMapper.xml"/>
     </mappers>
 </configuration>
 
