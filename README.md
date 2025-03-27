@@ -1,2 +1,2 @@
 # comercio-electronico
- Proyecto de Curso de Lenguaje Java Web
+ PROYECTO DE SISTEMA DE COMERCIO ELECTRONICO
