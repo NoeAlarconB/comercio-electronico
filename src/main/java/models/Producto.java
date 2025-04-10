@@ -15,8 +15,23 @@ public class Producto {
 	private Integer fechaGarantiaMeses;
 	private Date fechaCreacion;
 	private String imagenUrl;
+	private String nombreMarca;
+	private String imagenUrlMarca;
 	
 	
+	
+	public String getNombreMarca() {
+		return nombreMarca;
+	}
+	public void setNombreMarca(String nombreMarca) {
+		this.nombreMarca = nombreMarca;
+	}
+	public String getImagenUrlMarca() {
+		return imagenUrlMarca;
+	}
+	public void setImagenUrlMarca(String imagenUrlMarca) {
+		this.imagenUrlMarca = imagenUrlMarca;
+	}
 	public String getImagenUrl() {
 		return imagenUrl;
 	}

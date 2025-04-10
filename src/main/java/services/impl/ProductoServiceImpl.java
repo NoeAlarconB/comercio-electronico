@@ -35,4 +35,16 @@ public class ProductoServiceImpl implements ProductoService{
 	    }
 	}
 
+	@Override
+	public List<String> obtenerImagenesPorIdProducto(Integer idProducto) {
+		try (
+			SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession()) {
+	        ProductoMapper productoMapper = session.getMapper(ProductoMapper.class);
+	        return productoMapper.obtenerImagenesPorIdProducto(idProducto);
+	    } catch (Exception e) {
+	        System.out.println(e);
+	        return null;
+	    }
+	}
+
 }

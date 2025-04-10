@@ -28,7 +28,9 @@ public class DetalleProductoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer idProducto = Integer.parseInt(request.getParameter("idProducto"));
 		Producto producto = productoService.obtenerDetalleProductoPorIdProducto(idProducto);
+		List<String> imagenes = productoService.obtenerImagenesPorIdProducto(idProducto);
 		request.setAttribute("producto", producto);
+		request.setAttribute("imagenes", imagenes);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/detallesProductos.jsp");
 		dispatcher.forward(request, response);
 	}

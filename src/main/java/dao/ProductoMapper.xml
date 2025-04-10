@@ -18,6 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <result column="fecha_garantia_meses" property="fechaGarantiaMeses"/>
     <result column="fecha_creacion" property="fechaCreacion"/>
     <result column="imagen_url" property="imagenUrl"/>
+    <result column="nombre" property="nombreMarca"/>
+    <result column="imagen_url" property="imagenUrlMarca"/>
+    
 </resultMap>
 
 	<select id="listarProductosPorIdSubcategoria" parameterType="int" resultMap="ProductoMap">
@@ -35,13 +38,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="obtenerDetalleProductoPorIdProducto" parameterType="int" resultMap="ProductoMap">
-    SELECT p.id_producto, p.nombre, p.modelo, p.descripcion, p.precio, p.stock, p.estado_auditoria, 
-	   pi.nombre, pi.imagen_url
-	   FROM productos p
-	   LEFT JOIN producto_imagenes pi ON p.id_producto = pi.id_producto
-	   WHERE p.id_producto = #{idProducto} 
-  	   AND p.estado_auditoria = '1' LIMIT 1;
-</select>
+		SELECT p.id_producto, p.nombre, pi.imagen_url, m.nombre, m.imagen_url, p.modelo, 
+			   p.descripcion, p.precio, p.stock, p.estado_auditoria
+			   FROM productos p
+			   LEFT JOIN producto_imagenes pi ON p.id_producto = pi.id_producto
+			   LEFT JOIN marcas m ON p.id_marca = m.id_marca
+			   WHERE p.id_producto = #{idProducto} 
+			   AND p.estado_auditoria = '1' LIMIT 1;
+  	</select>
+  	
+  	<select id="obtenerImagenesPorIdProducto" parameterType="int" resultType="string">
+	    SELECT imagen_url
+	    FROM producto_imagenes
+	    WHERE id_producto = #{idProducto}
+	    AND estado_auditoria = '1'
+	    ORDER BY fecha_creacion ASC;
+	</select>
+  	   
 </mapper>
 
 
