@@ -26,6 +26,7 @@
         <mapper resource="dao/MarcaMapper.xml"/>
         <mapper resource="dao/SubcategoriaMapper.xml"/>
         <mapper resource="dao/ProductoMapper.xml"/>
+        <mapper resource="dao/PedidoMapper.xml"/>
     </mappers>
 </configuration>
 

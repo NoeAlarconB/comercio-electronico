@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.PedidoMapper">
+	<resultMap id="PedidoMap" type="models.Pedido">
+	
+		<id column="id_pedido" property="idPedido"/>
+		<result column="id_usuario" property="idUsuario"/>
+		<result column="codigo_interno" property="codigoInterno"/>
+		<result column="estado_pedido" property="estado"/>
+		<result column="total" property="total"/>
+		<result column="fecha_creacion" property="fechaCreacion"/>
+	</resultMap>
+
+	<select id="obtenerPedidoPorCodigoInterno" parameterType="String" resultMap="PedidoMap">
+		SELECT id_pedido, id_usuario, codigo_interno, estado_pedido, total, fecha_creacion
+		FROM pedidos
+		WHERE estado_auditoria = '1' AND codigo_interno = #{codigoInterno}
+	</select>
+	
+	<insert id="insertarPedido" parameterType="models.Pedido" useGeneratedKeys="true" keyProperty="idPedido">
+		INSERT INTO pedidos (id_usuario, codigo_interno, total) 
+		VALUES(#{idUsuario}, #{codigoInterno}, #{total})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

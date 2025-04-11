@@ -11,12 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Pedido;
+import services.PedidoService;
+import services.impl.PedidoServiceImpl;
+import shared.Util;
+
 @WebServlet("/carrito")
 public class CarritoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private PedidoServiceImpl pedidoServiceImpl;
 
     public CarritoServlet() {
         super();
+        pedidoServiceImpl = new PedidoServiceImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,10 +36,16 @@ public class CarritoServlet extends HttpServlet {
 		Integer idProducto = Integer.parseInt(request.getParameter("idProducto"));
 		System.out.println("Se esta agregando un elemento al carrito:" + idProducto);
 		
-		Cookie[] cookies = request.getCookies(); //la cookie es un identificador que nos da el navegador para la session en la que estamos
-		for (Cookie cookie : cookies) {
-			System.out.println("cookie:"+cookie.getName() + "-" + cookie.getValue());
+		String sessionId = Util.getCookieValue(request.getCookies(), "JSESSIONID");
+		
+		Pedido pedido = pedidoServiceImpl.obtenerPedidoPorCodigoInterno(sessionId); //busco la venta
+		if(pedido==null) { //si no existe lo inserto
+			Pedido newpedido = new Pedido();
+			newpedido.setCodigoInterno(sessionId);
+			pedido = pedidoServiceImpl.insertarPedido(newpedido); // escribo el nuevo objeto insertado
 		}
+		
+		System.out.println("PedidoId::" + pedido.getIdPedido());
 		
 		response.getWriter().append("OK");
 	}
