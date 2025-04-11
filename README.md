@@ -1,5 +1,5 @@
 # comercio-electronico
-SISTEMA DE COMERCIO ELECTRONICO - POSEIDON STORE
+# 🛒SISTEMA DE COMERCIO ELECTRONICO - POSEIDON STORE
 
 Aplicación creada por el grupo de programación Java orientada al desarrollo de un sitio web de comercio electrónico.
 
