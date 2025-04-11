@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Pedido;
+import models.PedidoDetalle;
 import services.PedidoService;
+import services.impl.PedidoDetalleServiceImpl;
 import services.impl.PedidoServiceImpl;
 import shared.Util;
 
@@ -21,10 +23,12 @@ public class CarritoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private PedidoServiceImpl pedidoServiceImpl;
+	private PedidoDetalleServiceImpl pedidoDetalleServiceImpl;
 
     public CarritoServlet() {
         super();
         pedidoServiceImpl = new PedidoServiceImpl();
+        pedidoDetalleServiceImpl = new PedidoDetalleServiceImpl();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,6 +50,19 @@ public class CarritoServlet extends HttpServlet {
 		}
 		
 		System.out.println("PedidoId::" + pedido.getIdPedido());
+		
+		PedidoDetalle pedidoDetalle = pedidoDetalleServiceImpl.obtenerPedidoDetallePorIdPedidoAndIdProducto(pedido.getIdPedido(), idProducto);
+		if (pedidoDetalle == null) {
+			PedidoDetalle newPedidoDetalle = new PedidoDetalle();
+			newPedidoDetalle.setIdPedido(pedido.getIdPedido());
+			newPedidoDetalle.setIdProducto(idProducto);
+			pedidoDetalle = pedidoDetalleServiceImpl.insertarPedidoDetalle(newPedidoDetalle);
+			
+		}else {
+			pedidoDetalleServiceImpl.aumentarPedidoDetalleCantidad(pedidoDetalle.getIdPedidoDetalle());
+		}
+		
+		System.out.println("PedidoDetalleId::" + pedidoDetalle.getIdPedidoDetalle());
 		
 		response.getWriter().append("OK");
 	}

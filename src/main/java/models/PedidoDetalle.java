@@ -5,7 +5,7 @@ import java.sql.Date;
 public class PedidoDetalle {
 	private Integer idPedidoDetalle;
 	private Integer idPedido;
-	private Integer IdProducto;
+	private Integer idProducto;
 	private Integer cantidad;
 	private Float precioUnitario;
 	private Float subtotal;
@@ -24,10 +24,10 @@ public class PedidoDetalle {
 		this.idPedido = idPedido;
 	}
 	public Integer getIdProducto() {
-		return IdProducto;
+		return idProducto;
 	}
 	public void setIdProducto(Integer idProducto) {
-		IdProducto = idProducto;
+		this.idProducto = idProducto;
 	}
 	public Integer getCantidad() {
 		return cantidad;
