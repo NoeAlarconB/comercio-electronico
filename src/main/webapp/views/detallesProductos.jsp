@@ -73,9 +73,6 @@
 	
 	<div class="h-5"></div>
 	
-	
-
-	
 	<main class="grid grid-cols-1 md:grid-cols-2 gap-8 h-screen items-center p-6">
 	    <div id="default-carousel" class="relative w-full" data-carousel="slide">
 		    <div class="relative h-[610px] overflow-hidden rounded-lg">
@@ -111,9 +108,8 @@
 
 	    <div class="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-lg p-6">
 	    	<p class="text-5xl font-bold"> <%= producto.getNombre() %></p>
-			<p class="text-green-600 text-xl font-bold"> <%= producto.getDescripcion()%></p>
-	    	<p class="text-red-500 text-xl font-semibold font-bold">Stock: <%= producto.getStock() %></p>
-	        <p class="text-blue-500 text-3xl font-bold flex justify-center "> - S/ <%= producto.getPrecio() %> -</p>
+	    	<p class="text-cyan-400 text-xl font-semibold font-bold"> S/ <%= producto.getPrecio() %></p>
+	    	<p class="text-red-500 text-xl font-semibold font-bold">En stock: <%= producto.getStock() %></p>
 	    </div>
 	</main>
 	
