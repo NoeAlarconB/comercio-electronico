@@ -1,7 +1,7 @@
 # comercio-electronico
 # 🛒SISTEMA DE COMERCIO ELECTRONICO - POSEIDON STORE
 
-Aplicación creada por el grupo de programación Java orientada al desarrollo de un sitio web de comercio electrónico.
+Aplicación de Java orientada al desarrollo de un sitio web de comercio electrónico.
 
 ### 👨‍💻 Integrantes
 - Noe Sebastian Alarcon Bolaños
