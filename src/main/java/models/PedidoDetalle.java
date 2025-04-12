@@ -10,7 +10,29 @@ public class PedidoDetalle {
 	private Float precioUnitario;
 	private Float subtotal;
 	private Date fechaCreacion;
+	private String nombreProd;
+	private String imagenUrl;
+	private Float precio;
 	
+	
+	public Float getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+	public String getNombreProd() {
+		return nombreProd;
+	}
+	public void setNombreProd(String nombreProd) {
+		this.nombreProd = nombreProd;
+	}
+	public String getImagenUrl() {
+		return imagenUrl;
+	}
+	public void setImagenUrl(String imagenUrl) {
+		this.imagenUrl = imagenUrl;
+	}
 	public Integer getIdPedidoDetalle() {
 		return idPedidoDetalle;
 	}

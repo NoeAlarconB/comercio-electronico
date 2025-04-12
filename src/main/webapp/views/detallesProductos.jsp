@@ -30,7 +30,8 @@
     	List<String> imagenes = (List<String>) request.getAttribute("imagenes");
 	%>
 	
-	<header>
+	<header class="sticky top-0 bg-white shadow-md z-50">
+		<div class="bg-[rgb(0,180,100)] h-0.5"></div>
 		<div class="container mx-auto flex justify-between h-[75px] items-center">
             <div class="flex items-center space-x-3">
                 <img src="https://images.squarespace-cdn.com/content/v1/5ee9d957b8c54e3c6056b014/1594124926985-D05H8VK3E4T8WL8XHAHL/2-01.png" 
@@ -45,8 +46,6 @@
             	<a href="/comercio-electronico" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Inicio</a>
 				<a href="/comercio-electronico/categorias" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm rounded-md cursor-pointer border border-green border-solid">Categorias</a>
 				<a href="/comercio-electronico/marcas" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Marcas</a>
-            	<a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Ofertas</a>
-				<a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Vender</a>
             </div>
             
             <div class="flex space-x-4 text-lg">
@@ -109,7 +108,15 @@
 	    <div class="flex flex-col gap-4 border border-gray-300 rounded-lg shadow-lg p-6">
 	    	<p class="text-5xl font-bold"> <%= producto.getNombre() %></p>
 	    	<p class="text-cyan-400 text-xl font-semibold font-bold"> S/ <%= producto.getPrecio() %></p>
-	    	<p class="text-red-500 text-xl font-semibold font-bold">En stock: <%= producto.getStock() %></p>
+	    	<p class="text-yellow-500 text-xl font-semibold font-bold">En stock: <%= producto.getStock() %></p>
+	    	<details class="border border-transparent open:border-black/10 rounded-md p-4">
+				<summary class="text-base font-semibold select-none cursor-pointer">DESCRIPCIÓN DEL PRODUCTO</summary>
+					<div class="mt-3 text-sm leading-6 text-gray-700">
+						<p class="text-lg font-semibold">
+							<span class="text-white p-6 rounded-lg shadow-md w-full max-w-xl mx-auto whitespace-pre-line"><%= producto.getDescripcion() %></span>
+					    </p>
+			  		</div>
+			</details>
 	    </div>
 	</main>
 	

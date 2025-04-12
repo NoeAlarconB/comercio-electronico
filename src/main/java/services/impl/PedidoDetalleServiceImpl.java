@@ -1,5 +1,7 @@
 package services.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import config.MyBatisUtil;
@@ -48,6 +50,19 @@ public class PedidoDetalleServiceImpl implements PedidoDetalleService{
 		} catch (Exception e) {
 			System.out.println("aumentarPedidoDetalleCantidad::"+e);
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<PedidoDetalle> obtenerDetallesPorIdPedido(Integer idPedido) {
+		try {
+			SqlSession session = MyBatisUtil.getSqlSessionFactory().openSession();
+			PedidoDetalleMapper mapper = session.getMapper(PedidoDetalleMapper.class);
+			return mapper.obtenerDetallesPorIdPedido(idPedido);
+		} catch (Exception e) {
+			System.out.println("obtenerDetallesPorIdPedido::"+e);
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

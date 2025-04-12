@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,8 +33,16 @@ public class CarritoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String sessionId = Util.getCookieValue(request.getCookies(), "JSESSIONID");
+		Pedido pedido = pedidoServiceImpl.obtenerPedidoPorCodigoInterno(sessionId);
+		if (pedido != null) {
+			List<PedidoDetalle> detalles = pedidoDetalleServiceImpl.obtenerDetallesPorIdPedido(pedido.getIdPedido());
+			request.setAttribute("detallesCarrito", detalles);
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/carrito.jsp");
 		dispatcher.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

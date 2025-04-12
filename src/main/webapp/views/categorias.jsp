@@ -21,7 +21,9 @@
 	List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
 	%>
 
-	<header>
+	<header class="sticky top-0 bg-white shadow-md z-50">
+			<div class="bg-[rgb(0,180,100)] h-0.5">
+	    	</div>
 		<div class="container mx-auto flex justify-between h-[75px] items-center">
             <div class="flex items-center space-x-3">
                 <img src="https://images.squarespace-cdn.com/content/v1/5ee9d957b8c54e3c6056b014/1594124926985-D05H8VK3E4T8WL8XHAHL/2-01.png" 
@@ -36,8 +38,6 @@
             	<a href="/comercio-electronico" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Inicio</a>
 				<a href="/comercio-electronico/categorias" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm rounded-md cursor-pointer border border-green border-solid">Categorias</a>
 				<a href="/comercio-electronico/marcas" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Marcas</a>
-            	<a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Ofertas</a>
-				<a href="" class="text-ml font-bold p-2 transition duration-300 hover:text-green-400 hover:shadow-sm">Vender</a>
             </div>
 
             <div class="flex space-x-4 text-lg">

@@ -13,6 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="precio_unitario" property="precioUnitario"/>
 		<result column="subtotal" property="subtotal"/>
 		<result column="fecha_creacion" property="fechaCreacion"/>
+		<result column="nombre" property="nombreProd"/>
+		<result column="imagen_url" property="imagenUrl"/>
+		<result column="precio" property="precio"/>
 	</resultMap>
 
 	<select id="obtenerPedidoDetallePorIdPedidoAndIdProducto" resultMap="PedidoDetalleMap">
@@ -31,6 +34,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET cantidad = cantidad + 1
 		WHERE id_pedido = #{idPedidoDetalle}
 	</update>
+	
+	<select id="obtenerDetallesPorIdPedido" resultMap="PedidoDetalleMap">
+		SELECT 
+			pd.id_pedido_detalle, pd.id_pedido, pd.id_producto, pd.cantidad, pd.precio_unitario, pd.subtotal, pd.fecha_creacion,
+			p.id_producto, p.nombre, pi.imagen_url, p.precio
+		FROM pedido_detalles pd
+		JOIN productos p ON pd.id_producto = p.id_producto
+		LEFT JOIN producto_imagenes pi ON pi.id_producto = p.id_producto AND pi.estado_auditoria = '1'
+		WHERE pd.estado_auditoria = '1' AND pd.id_pedido = #{idPedido}
+		GROUP BY pd.id_pedido_detalle, p.id_producto, pi.imagen_url
+	</select>
+	
+	
 </mapper>
 
 
